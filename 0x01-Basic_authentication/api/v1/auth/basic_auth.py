@@ -4,7 +4,7 @@ Definition of class BasicAuth
 """
 import base64
 from auth import Auth
-from typing import TypeVar, List, Type, Tuple, Union, Optional, Any, Dict, AnyStr, Iterable
+from typing import TypeVar, Optional, Tuple
 from models.user import User
 
 class BasicAuth(Auth):
@@ -41,7 +41,8 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> Tuple[Optional[str], Optional[str]]:
+    def extract_user_credentials(self, 
+                                 decoded_base64_authorization_header: str) -> Tuple[Optional[str], Optional[str]]:
         """ 
         Extracts user email and password from a decoded Base64 string,
         returns a tuple of email and password
@@ -56,7 +57,9 @@ class BasicAuth(Auth):
         password = decoded_base64_authorization_header[len(email) + 1:]
         return (email, password)
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> Optional[TypeVar('User')]:
+    def user_object_from_credentials(self, 
+                                     user_email: str,
+                                     user_pwd: str) -> Optional[TypeVar('User')]:
         """
         Return a User instance based on email and password,
         or None if no user is found
