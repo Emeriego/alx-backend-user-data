@@ -44,21 +44,21 @@ def bef_req():
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
+    """ Not found handler - 404
     """
     return jsonify({"error": "Not found"}), 404
 
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """ Request unauthorized handler
+    """ Request unauthorized handler- 401
     """
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
-    """ Request unauthorized handler
+    """ Request unauthorized handler - 403
     """
     return jsonify({"error": "Forbidden"}), 403
 
