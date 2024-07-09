@@ -11,13 +11,12 @@ from models.user import User
 
 
 class BasicAuth(Auth):
-    """Basic authentication class.
+    """ Basic authentication class,
     """
     def extract_base64_authorization_header(
             self,
             authorization_header: str) -> str:
-        """Extracts the Base64 part of the Authorization header
-        for a Basic Authentication.
+        """Extracts the Base64-encoded part of the Authorization header.
         """
         if type(authorization_header) == str:
             pattern = r'Basic (?P<token>.+)'
@@ -30,7 +29,7 @@ class BasicAuth(Auth):
             self,
             base64_authorization_header: str,
             ) -> str:
-        """Decodes a base64-encoded authorization header.
+        """Decodes a base64-encoded string.
         """
         if type(base64_authorization_header) == str:
             try:
@@ -46,8 +45,7 @@ class BasicAuth(Auth):
             self,
             decoded_base64_authorization_header: str,
             ) -> Tuple[str, str]:
-        """Extracts user credentials from a base64-decoded authorization
-        header that uses the Basic authentication flow.
+        """Extracts user credentials from a base64-encoded string.
         """
         if type(decoded_base64_authorization_header) == str:
             pattern = r'(?P<user>[^:]+):(?P<password>.+)'
@@ -65,7 +63,7 @@ class BasicAuth(Auth):
             self,
             user_email: str,
             user_pwd: str) -> TypeVar('User'):
-        """Retrieves a user based on the user's authentication credentials.
+        """Retrieves a user based on credentials.
         """
         if type(user_email) == str and type(user_pwd) == str:
             try:

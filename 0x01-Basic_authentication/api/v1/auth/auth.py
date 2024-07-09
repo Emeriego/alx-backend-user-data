@@ -3,11 +3,10 @@
 """
 import re
 from typing import List, TypeVar
-from flask import request
 
 
 class Auth:
-    """Authentication class.
+    """ Authentication class.
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Checks if a path requires authentication.
