@@ -11,7 +11,7 @@ class BasicAuth(Auth):
     """ Implement Basic Authorization protocol methods
     """
     def extract_base64_authorization_header(self,
-                                            authorization_header: str) -> str:
+                                            authorization_header: str) -> Optional[str]:
         """
         Extracts the Base64 part of the Authorization header for a Basic
         Authorization
@@ -26,8 +26,7 @@ class BasicAuth(Auth):
         return token
 
     def decode_base64_authorization_header(self,
-                                           base64_authorization_header:
-                                           str) -> str:
+                                           base64_authorization_header: str) -> Optional[str]:
         """
         Decode a Base64-encoded string
         """
@@ -42,8 +41,7 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    def extract_user_credentials(self, decoded_base64_authorization_header:
-                                 str) -> (str, str):
+    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> Tuple[Optional[str], Optional[str]]:
         """ 
         Extracts user email and password from a decoded Base64 string,
         returns a tuple of email and password
@@ -58,8 +56,7 @@ class BasicAuth(Auth):
         password = decoded_base64_authorization_header[len(email) + 1:]
         return (email, password)
 
-    def user_object_from_credentials(self, user_email: str,
-                                     user_pwd: str) -> TypeVar('User'):
+    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> Optional[TypeVar('User')]:
         """
         Return a User instance based on email and password,
         or None if no user is found
@@ -79,7 +76,7 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> Optional[TypeVar('User')]:
         """
         Returns a User instance based on a received request,
         or None if no user is found
@@ -93,4 +90,4 @@ class BasicAuth(Auth):
                     email, pword = self.extract_user_credentials(decoded)
                     if email is not None:
                         return self.user_object_from_credentials(email, pword)
-        return
+        return None
