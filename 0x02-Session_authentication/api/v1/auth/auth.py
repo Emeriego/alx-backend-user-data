@@ -15,14 +15,7 @@ class Auth:
     Manages the API authentication
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """
-        Determines whether a given path requires authentication or not
-        Args:
-            - path(str): Url path to be checked
-            - excluded_paths(List of str): List of paths that do not require
-              authentication
-        Return:
-            - True if path is not in excluded_paths, else False
+        """ Method that returns True if the path is not in the excluded_paths.  
         """
         if path is None:
             return True
@@ -60,11 +53,7 @@ class Auth:
 
     def session_cookie(self, request=None):
         """
-        Returns a cookie from a request
-        Args:
-            request : request object
-        Return:
-            value of _my_session_id cookie from request object
+        Returns a cookie value from a request object
         """
         if request is None:
             return None
