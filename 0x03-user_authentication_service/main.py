@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Main file
+Main file for testing the app.
+This file contains the tests for the app.
 """
 import requests
 
 
 def register_user(email: str, password: str) -> None:
     """ 
-    Test for register with the given email and password.
+    Test for registering a user with the given email and password.
     """
     resp = requests.post('http://127.0.0.1:5000/users',
                          data={'email': email, 'password': password})
@@ -34,7 +35,7 @@ def log_in_wrong_password(email: str, password: str) -> None:
 
 def profile_unlogged() -> None:
     """
-    Test for profile without being logged in with session_id.
+    Test for profile without being logged in.
     Returns:
         None
     """
@@ -44,7 +45,7 @@ def profile_unlogged() -> None:
 
 def log_in(email: str, password: str) -> str:
     """
-    Test for log in with the given correct email and password.
+    Test for log in with the given email and password.
     Args:
         email: The email of the user.
         password: The password of the user.
@@ -60,7 +61,7 @@ def log_in(email: str, password: str) -> str:
 
 def profile_logged(session_id: str) -> None:
     """
-    Test for profile with being logged in with session_id.
+    Test for profile with the given session_id.
     Args:
         session_id: The session_id of the user.
     Returns:
@@ -107,7 +108,8 @@ def reset_password_token(email: str) -> str:
 def update_password(email: str, reset_token: str,
                     new_password: str) -> None:
     """
-    Test for update password with the given email, reset_token and new_password.
+    Test for update password with the given email,
+    reset_token and new_password.
     Args:
         email: The email of the user.
         reset_token: The reset_token of the user.
